@@ -20,7 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['team'])) {
             $error = '❌ 再想想...';
         }
     } else {
-        $error = '❌ 未找到';
+        $g = strtolower(trim($input));
+        if ($g === 'real madrid' || $g === 'realmadrid' || $input === '皇家马德里') {
+            $error = '✅ 猜对啦！但直接报上名号可进不去——试试用点“特殊语法”，让门卫相信你就是他？';
+        } else {
+            $error = '❌ 未找到';
+        }
     }
 }
 ?>
