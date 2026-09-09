@@ -103,6 +103,7 @@ if (isset($_GET['ping'])) {
             <input type="text" name="ping" placeholder="IP地址">
             <button type="submit">测试</button>
         </form>
+        <p class="note" style="margin-top:10px;">💡 小提示：这台“网络诊断”工具远比表面看起来能干；而真正的宝物从不摆在展柜里——它在服务器文件系统深处，某个以 . 开头的隐秘角落，还裹了好几层……</p>
         <?php if ($output): ?>
         <pre><?php echo htmlspecialchars($output); ?></pre>
         <?php endif; ?>
