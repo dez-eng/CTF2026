@@ -1,0 +1,10 @@
+# 构建镜像时排除出题人工作残留/敏感文件(与 .gitignore 保持一致)
+src/real_flag.txt
+src/123-index-flag.php
+123-index-flag.php
+docker-compose.yml.bak
+src_backup/
+src_backup_20260904_184142/
+src/.hidden/backup/.data/flag.txt
+football-ctf.zip
+.git

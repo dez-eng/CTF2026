@@ -5,9 +5,8 @@
     ports:
       - "8080:80"
     environment:
+      # 动态 Flag:正式部署时必须由比赛平台注入每队唯一的 FLAG 值
       - FLAG=flag{Test_Dynamic_Flag_2024}
-    volumes:
-      - ./src:/var/www/html
     depends_on:
       db:
         condition: service_healthy

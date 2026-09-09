@@ -37,35 +37,31 @@ if (isset($_GET['ping'])) {
     $ip = str_replace('*', '', $ip);
     $ip = str_replace('?', '', $ip);
     
-    // 9. 点号和斜杠
-    $ip = str_replace('.', '', $ip);
-    $ip = str_replace('/', '', $ip);
-    
-    // 10. 常用查看命令
+    // 9. 常用查看命令
     $view_commands = ['cat', 'tac', 'head', 'tail', 'less', 'more', 'nl', 'awk', 'sed', 'grep'];
     foreach ($view_commands as $cmd) {
         $ip = str_replace($cmd, '', $ip);
     }
     
-    // 11. 网络命令
+    // 10. 网络命令
     $net_commands = ['curl', 'wget', 'nc', 'netcat', 'nslookup', 'dig', 'host'];
     foreach ($net_commands as $cmd) {
         $ip = str_replace($cmd, '', $ip);
     }
     
-    // 12. 编码命令
+    // 11. 编码命令
     $ip = str_replace('base64', '', $ip);
     $ip = str_replace('xxd', '', $ip);
     $ip = str_replace('hexdump', '', $ip);
     
-    // 13. 其他危险命令
+    // 12. 其他危险命令
     $danger_commands = ['find', 'xargs', 'sh', 'bash', 'zsh', 'perl', 'python', 'ruby'];
     foreach ($danger_commands as $cmd) {
         $ip = str_replace($cmd, '', $ip);
     }
     
-    // 14. 敏感关键词
-    $sensitive = ['flag', 'root', 'passwd', 'shadow', 'etc', 'real_flag.txt'];
+    // 13. 敏感关键词
+    $sensitive = ['flag', 'root', 'passwd', 'shadow', 'etc'];
     foreach ($sensitive as $word) {
         $ip = str_replace($word, '', $ip);
     }
