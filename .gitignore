@@ -1,0 +1,17 @@
+# ---- 出题人工作文件/敏感内容,不入公开仓库 ----
+
+# 真实 flag 与调试残留(123-index-flag.php 指向 flag 藏匿位置)
+src/real_flag.txt
+123-index-flag.php
+src/123-index-flag.php
+docker-compose.yml.bak
+
+# 出题过程备份目录(内含真实 flag 副本)
+src_backup/
+src_backup_20260904_184142/
+
+# docker 运行后写回宿主机的 flag 残留(容器内由 start.sh 动态生成)
+src/.hidden/backup/.data/flag.txt
+
+# 本地对外分发封装包(如需分发请基于仓库源码重新打包)
+football-ctf.zip

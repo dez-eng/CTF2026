@@ -1,0 +1,40 @@
+﻿FROM php:8.2-apache
+
+# 安装扩展
+RUN docker-php-ext-install mysqli && \
+    docker-php-ext-install pdo_mysql
+
+# 启用Apache模块
+RUN a2enmod rewrite headers
+
+# 设置工作目录
+WORKDIR /var/www/html
+
+# 复制源码
+COPY src/ /var/www/html/
+
+# 模拟 .git 泄露线索(git 无法追踪 .git 路径,故在构建时生成)
+RUN mkdir -p /var/www/html/.git && printf 'Git repo\n' > /var/www/html/.git/config
+
+# 设置权限
+RUN chown -R www-data:www-data /var/www/html && \
+    chmod -R 755 /var/www/html && \
+    chmod 444 /var/www/html/*.php 2>/dev/null || true && \
+    chmod 444 /var/www/html/.htaccess 2>/dev/null || true
+
+# 创建Flag文件占位
+RUN touch /var/www/html/real_flag.txt /var/www/html/fake_flag.txt && \
+    chmod 666 /var/www/html/real_flag.txt /var/www/html/fake_flag.txt
+
+# 复制启动脚本
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+
+# 安装工具
+RUN apt-get update && \
+    apt-get install -y iputils-ping netcat-openbsd && \
+    rm -rf /var/lib/apt/lists/*
+
+EXPOSE 80
+
+CMD ["/start.sh"]
