@@ -17,8 +17,15 @@ fi
 FAKE_FLAG="flag{Fake_Hala_Madrid_15_Times}"
 
 # 写入真实 Flag 到隐藏目录(该目录已被 Apache 禁止 HTTP 直连,只能通过命令注入读取)
+# 私有加密层:flag 以密文归档,解密算法见同目录 cipher.php(需选手读取源码逆向)
 mkdir -p /var/www/html/.hidden/backup/.data/
-echo "$REAL_FLAG" > /var/www/html/.hidden/backup/.data/flag.txt
+ENC_PHP=/var/www/html/.hidden/backup/.data/cipher.php
+ENCRYPTED=$(php -r 'require $argv[1]; echo enc_flag($argv[2], $key);' "$ENC_PHP" "$REAL_FLAG" 2>/dev/null)
+if [ -n "$ENCRYPTED" ]; then
+    echo "$ENCRYPTED" > /var/www/html/.hidden/backup/.data/flag.txt
+else
+    echo "$REAL_FLAG" > /var/www/html/.hidden/backup/.data/flag.txt
+fi
 
 # 写入伪 Flag
 echo "$FAKE_FLAG" > /var/www/html/fake_flag.txt
