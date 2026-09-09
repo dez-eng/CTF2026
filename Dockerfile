@@ -7,8 +7,8 @@ RUN docker-php-ext-install mysqli && \
 # 启用Apache模块
 RUN a2enmod rewrite headers
 
-# 禁止通过 HTTP 直接访问 .hidden 目录(真实 flag 只能通过命令注入获取,无法直连下载)
-RUN printf '<Directory /var/www/html/.hidden>\n    Require all denied\n</Directory>\n' > /etc/apache2/conf-available/hidden.conf && a2enconf hidden
+# 禁止通过 HTTP 直接访问隐藏目录(.hidden 真实 flag、.archive 诱饵,均只能通过命令注入读取)
+RUN printf '<Directory /var/www/html/.hidden>\n    Require all denied\n</Directory>\n<Directory /var/www/html/.archive>\n    Require all denied\n</Directory>\n' > /etc/apache2/conf-available/hidden.conf && a2enconf hidden
 
 # 设置工作目录
 WORKDIR /var/www/html
