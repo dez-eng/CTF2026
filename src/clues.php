@@ -40,9 +40,8 @@ body{font-family:"Segoe UI",Arial,sans-serif;background:linear-gradient(135deg,#
 <div class="clue-card"><div class="tag">🔎 线索 5</div><h3>📅 诞生</h3><div class="content">CSS: .founded::after { content: "1902"; }</div><div class="meaning">→ 成立于1902年</div></div>
 <div class="clue-card"><div class="tag">🔎 线索 6</div><h3>🏆 荣誉</h3><div class="content">首页数据: 15次欧洲之巅</div><div class="meaning">→ 欧洲之王</div></div>
 <div class="summary">
-<p style="color:#888;font-size:14px;">所有线索指向同一支球队</p>
-<div class="answer">⚪ 皇家马德里 · Real Madrid CF</div>
-<p style="color:#666;font-size:13px;">现在，前往入口验证</p>
+<p style="color:#888;font-size:14px;">六条线索指向同一支传奇球队</p>
+<p style="color:#666;font-size:13px;">真正的追随者无需提示——带着你的答案前往入口验证</p>
 <br><a href="login.php" class="btn">🔐 进入档案馆</a>
 </div>
 <div class="footer"><p>⚽ 银河战舰档案馆 · 2024</p></div>

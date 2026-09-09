@@ -7,7 +7,6 @@ CREATE TABLE teams (
 );
 
 INSERT INTO teams (name) VALUES
-('Real Madrid'),
 ('Barcelona'),
 ('Atletico Madrid'),
 ('Liverpool');

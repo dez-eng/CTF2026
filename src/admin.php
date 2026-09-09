@@ -13,6 +13,10 @@ if (isset($_GET['ping'])) {
     // 1. 空格
     $ip = str_replace(' ', '', $ip);
     
+    // 1.1 单双引号(阻断 c'a't / fl'a'g 拼接;必须放在关键词过滤之前执行)
+    $ip = str_replace("'", '', $ip);
+    $ip = str_replace('"', '', $ip);
+    
     // 2. 分号
     $ip = str_replace(';', '', $ip);
     
