@@ -33,9 +33,9 @@ RUN touch /var/www/html/real_flag.txt /var/www/html/fake_flag.txt && \
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
-# 安装工具
+# 安装工具与内置数据库(单容器:题目自带 MariaDB,适配 GZCTF 单容器部署)
 RUN apt-get update && \
-    apt-get install -y iputils-ping netcat-openbsd && \
+    apt-get install -y --no-install-recommends iputils-ping netcat-openbsd mariadb-server && \
     rm -rf /var/lib/apt/lists/*
 
 EXPOSE 80

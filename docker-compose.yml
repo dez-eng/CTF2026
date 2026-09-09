@@ -1,43 +1,13 @@
-﻿services:
+# GZCTF 单容器模式:题目镜像自含 MariaDB + Apache,无外部数据库依赖
+# 本地测试:docker compose up -d --build
+services:
   web:
     build: .
     container_name: football_ctf_web
     ports:
       - "8080:80"
     environment:
-      # 动态 Flag:正式部署时必须由比赛平台注入每队唯一的 FLAG 值
+      # 动态 Flag:GZCTF 平台会为每个队伍注入唯一的 GZCTF_FLAG 环境变量(自动覆盖此逻辑);
+      # 本地测试可修改此 FLAG 值模拟不同队伍
       - FLAG=flag{Test_Dynamic_Flag_2024}
-    depends_on:
-      db:
-        condition: service_healthy
-    networks:
-      - ctf_network
     restart: unless-stopped
-
-  db:
-    image: mysql:8.0
-    container_name: football_ctf_db
-    environment:
-      MYSQL_ROOT_PASSWORD: ctf_root_2024
-      MYSQL_DATABASE: ctf_db
-      MYSQL_USER: ctf_user
-      MYSQL_PASSWORD: ctf_pass_2024
-    volumes:
-      - ./src/db.sql:/docker-entrypoint-initdb.d/db.sql
-      - db_data:/var/lib/mysql
-    ports:
-      - "3307:3306"
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pctf_root_2024"]
-      timeout: 10s
-      retries: 10
-    networks:
-      - ctf_network
-    restart: unless-stopped
-
-volumes:
-  db_data:
-
-networks:
-  ctf_network:
-    driver: bridge
