@@ -6,5 +6,8 @@ docker-compose.yml.bak
 src_backup/
 src_backup_20260904_184142/
 src/.hidden/backup/.data/flag.txt
+
+# 出题人本地生成脚本(含旧版题目源码与设计思路,不应随题目镜像分发)
+src/create_all_files.ps1
 football-ctf.zip
 .git
